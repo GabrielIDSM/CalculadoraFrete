@@ -7,11 +7,11 @@
 </template>
 
 <script setup lang="ts">
-import BoasVindas from '../components/BoasVindas.vue'
-import Formulario from '../components/Formulario.vue'
-import Historico from '../components/Historico.vue'
-import { useFreteStore } from '../stores/useFreteStore'
-import type { ParametroEnvio, Resposta } from '../types/Frete'
+import BoasVindas from '@/components/BoasVindas.vue'
+import Formulario from '@/components/Formulario.vue'
+import Historico from '@/components/Historico.vue'
+import { useFreteStore } from '@/stores/useFreteStore'
+import type { ParametroEnvio, Resposta } from '@/types/Frete'
 import axios from 'axios'
 
 const freteStore = useFreteStore()
