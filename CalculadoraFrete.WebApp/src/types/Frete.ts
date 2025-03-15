@@ -1,25 +1,25 @@
 export interface ParametroEnvio {
-  CEPOrigem: string
-  CEPDestino: string
-  Peso: number
-  Largura: number
-  Altura: number
-  Comprimento: number
-  ValorDeclarado: number
+  cepOrigem: string
+  cepDestino: string
+  peso: number
+  largura: number
+  altura: number
+  comprimento: number
+  valorDeclarado: number
 }
 
 export interface CotacaoFrete {
-  Transportadora: string
-  CodigoTransportadora: string
-  Servico: string
-  CodigoServico: string
-  PrazoEntrega: number
-  Preco: number
+  transportadora: string
+  codigoTransportadora: string
+  servico: string
+  codigoServico: string
+  prazoEntrega: number
+  preco: number
 }
 
 export interface Resposta {
-  ParametroEnvio: ParametroEnvio
-  Cotacoes: CotacaoFrete[]
-  Sucesso: boolean
-  MensagemErro?: string
+  parametroEnvio: ParametroEnvio
+  cotacoes: CotacaoFrete[]
+  sucesso: boolean
+  mensagemErro?: string
 }
