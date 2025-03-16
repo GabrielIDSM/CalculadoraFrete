@@ -8,6 +8,15 @@ export interface ParametroEnvio {
   valorDeclarado: number
 }
 
+export interface Endereco {
+  cep: string
+  uf: string
+  estado: string
+  localidade: string
+  bairro: string
+  logradouro: string
+}
+
 export interface CotacaoFrete {
   transportadora: string
   codigoTransportadora: string
@@ -19,6 +28,8 @@ export interface CotacaoFrete {
 
 export interface Resposta {
   parametroEnvio: ParametroEnvio
+  origem: Endereco
+  destino: Endereco
   cotacoes: CotacaoFrete[]
   sucesso: boolean
   mensagemErro?: string

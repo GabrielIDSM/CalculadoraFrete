@@ -1,11 +1,16 @@
 ﻿using CalculadoraFrete.Domain.Entities;
 using CalculadoraFrete.Domain.Interfaces.Integrations;
 using CalculadoraFrete.Domain.Interfaces.Services;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace CalculadoraFrete.Application.Services
 {
-    public class FreteService(IFreteIntegrationService freteIntegrationService) : IFreteService
+    public class FreteService(IMemoryCache cache,
+        IEnderecoIntegrationService enderecoIntegrationService,
+        IFreteIntegrationService freteIntegrationService) : IFreteService
     {
+        private readonly IMemoryCache _cache = cache;
+        private readonly IEnderecoIntegrationService _enderecoIntegrationService = enderecoIntegrationService;
         private readonly IFreteIntegrationService _freteIntegrationService = freteIntegrationService;
 
         public Resposta ObterCotacoes(ParametroEnvio? parametroEnvio)
@@ -13,13 +18,38 @@ namespace CalculadoraFrete.Application.Services
             try
             {
                 ValidarParametroEnvio(parametroEnvio);
+
+                string cacheChave = string.Join("_",
+                    "frete",
+                    parametroEnvio!.CEPOrigem,
+                    parametroEnvio!.CEPDestino,
+                    parametroEnvio!.Peso,
+                    parametroEnvio!.Largura,
+                    parametroEnvio!.Altura,
+                    parametroEnvio!.Comprimento,
+                    parametroEnvio!.ValorDeclarado
+                );
+
+                if (_cache.TryGetValue(cacheChave, out Resposta? cacheResposta))
+                {
+                    return cacheResposta!;
+                }
+
                 List<CotacaoFrete> cotacoes = _freteIntegrationService.ObterCotacoesFrete(parametroEnvio!);
-                return new Resposta()
+                Endereco origem = _enderecoIntegrationService.ObterEnderecoPorCEP(parametroEnvio!.CEPOrigem);
+                Endereco destino = _enderecoIntegrationService.ObterEnderecoPorCEP(parametroEnvio!.CEPDestino);
+                Resposta resposta = new()
                 {
                     Sucesso = true,
                     ParametroEnvio = parametroEnvio,
+                    Origem = origem,
+                    Destino = destino,
                     Cotacoes = cotacoes
                 };
+
+                _cache.Set(cacheChave, resposta, new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromHours(1)));
+
+                return resposta;
             }
             catch (Exception e)
             {

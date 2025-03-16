@@ -69,7 +69,7 @@ namespace CalculadoraFrete.Client.Frenet.Services
                 }
                 else
                 {
-                    throw new Exception($"Erro interno");
+                    throw new Exception("Erro interno");
                 }
             }
 

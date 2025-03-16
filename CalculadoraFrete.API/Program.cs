@@ -1,5 +1,6 @@
 using CalculadoraFrete.Application.Services;
 using CalculadoraFrete.Client.Frenet.Services;
+using CalculadoraFrete.Client.ViaCEP.Services;
 using CalculadoraFrete.Domain.Interfaces.Integrations;
 using CalculadoraFrete.Domain.Interfaces.Services;
 
@@ -15,11 +16,15 @@ builder.Services.AddCors(options =>
                    .AllowAnyHeader();
         });
 });
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddMemoryCache();
+
 builder.Services.AddScoped<IFreteService, FreteService>();
 builder.Services.AddScoped<IFreteIntegrationService, FrenetIntegrationService>();
+builder.Services.AddScoped<IEnderecoIntegrationService, ViaCEPIntegrationService>();
 
 var app = builder.Build();
 

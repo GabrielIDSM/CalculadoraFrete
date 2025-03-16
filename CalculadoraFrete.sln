@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculadoraFrete.Applicatio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculadoraFrete.API", "CalculadoraFrete.API\CalculadoraFrete.API.csproj", "{6BDF9EDA-D33C-419F-A094-9FF8FA3C9BA3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculadoraFrete.Client.ViaCEP", "CalculadoraFrete.Client.ViaCEP\CalculadoraFrete.Client.ViaCEP.csproj", "{5AB2B0F4-E364-4A23-AD4E-9778A1857A15}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{6BDF9EDA-D33C-419F-A094-9FF8FA3C9BA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BDF9EDA-D33C-419F-A094-9FF8FA3C9BA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6BDF9EDA-D33C-419F-A094-9FF8FA3C9BA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AB2B0F4-E364-4A23-AD4E-9778A1857A15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AB2B0F4-E364-4A23-AD4E-9778A1857A15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AB2B0F4-E364-4A23-AD4E-9778A1857A15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AB2B0F4-E364-4A23-AD4E-9778A1857A15}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -14,6 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\CalculadoraFrete.Application\CalculadoraFrete.Application.csproj" />
     <ProjectReference Include="..\CalculadoraFrete.Client.Frenet\CalculadoraFrete.Client.Frenet.csproj" />
+    <ProjectReference Include="..\CalculadoraFrete.Client.ViaCEP\CalculadoraFrete.Client.ViaCEP.csproj" />
   </ItemGroup>
 
 </Project>
