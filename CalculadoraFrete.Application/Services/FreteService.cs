@@ -15,11 +15,14 @@ namespace CalculadoraFrete.Application.Services
 
         public Resposta ObterCotacoes(ParametroEnvio? parametroEnvio)
         {
+            Resposta resposta;
+            string? cacheChave = string.Empty;
+
             try
             {
                 ValidarParametroEnvio(parametroEnvio);
 
-                string cacheChave = string.Join("_",
+                cacheChave = string.Join("_",
                     "frete",
                     parametroEnvio!.CEPOrigem,
                     parametroEnvio!.CEPDestino,
@@ -38,7 +41,7 @@ namespace CalculadoraFrete.Application.Services
                 List<CotacaoFrete> cotacoes = _freteIntegrationService.ObterCotacoesFrete(parametroEnvio!);
                 Endereco origem = _enderecoIntegrationService.ObterEnderecoPorCEP(parametroEnvio!.CEPOrigem);
                 Endereco destino = _enderecoIntegrationService.ObterEnderecoPorCEP(parametroEnvio!.CEPDestino);
-                Resposta resposta = new()
+                resposta = new()
                 {
                     Sucesso = true,
                     ParametroEnvio = parametroEnvio,
@@ -53,13 +56,19 @@ namespace CalculadoraFrete.Application.Services
             }
             catch (Exception e)
             {
-                return new Resposta()
+                resposta = new()
                 {
                     Sucesso = false,
                     MensagemErro = e.Message
                 };
-            }
 
+                if (!string.IsNullOrWhiteSpace(cacheChave))
+                {
+                    _cache.Set(cacheChave, resposta, new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromHours(1)));
+                }
+
+                return resposta;
+            }
         }
 
         private void ValidarParametroEnvio(ParametroEnvio? parametroEnvio)

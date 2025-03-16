@@ -5,6 +5,7 @@
       @change="campo.validate()"
       v-model="campo.value.value"
       v-imask="{ mask: '00000-000' }"
+      maxlength="9"
       type="text"
     />
     <span v-if="campo.errorMessage">{{ campo.errorMessage }}</span>

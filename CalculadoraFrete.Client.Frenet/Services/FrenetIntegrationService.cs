@@ -1,8 +1,8 @@
 ﻿using System.Text;
+using System.Text.Json;
 using CalculadoraFrete.Domain.Entities;
 using CalculadoraFrete.Domain.Interfaces.Integrations;
 using Microsoft.Extensions.Configuration;
-using System.Text.Json;
 
 namespace CalculadoraFrete.Client.Frenet.Services
 {

@@ -19,6 +19,12 @@ namespace CalculadoraFrete.Client.ViaCEP.Services
                 string responseBody = response.Content.ReadAsStringAsync().Result;
                 using JsonDocument responseAsJsonDocument = JsonDocument.Parse(responseBody);
                 JsonElement responseAsJson = responseAsJsonDocument.RootElement;
+
+                if (responseAsJson.TryGetProperty("erro", out JsonElement erroAsJsonProperty) && "true".Equals(erroAsJsonProperty.GetString()))
+                {
+                    throw new Exception("O CEP informado é inválido");
+                }
+
                 return new Endereco
                 {
                     CEP = responseAsJson.GetProperty("cep").GetString()!,

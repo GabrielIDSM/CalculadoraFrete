@@ -24,13 +24,11 @@ import * as yup from 'yup'
 const schema = yup.object({
   CEPOrigem: yup
     .string()
-    .transform((value) => value.replace('-', ''))
-    .length(8, 'O CEP de origem deve ter o formato 12345-123')
+    .matches(/^\d{5}-\d{3}$/, 'O CEP de origem deve ter o formato 12345-123')
     .required('CEP de origem é obrigatório'),
   CEPDestino: yup
     .string()
-    .transform((value) => value.replace('-', ''))
-    .length(8, 'O CEP de destino deve ter o formato 12345-123')
+    .matches(/^\d{5}-\d{3}$/, 'O CEP de origem deve ter o formato 12345-123')
     .required('CEP de destino é obrigatório'),
   Peso: yup
     .number()
