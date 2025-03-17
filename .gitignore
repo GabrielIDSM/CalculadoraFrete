@@ -392,3 +392,5 @@ coverage
 *.sw?
 
 *.tsbuildinfo
+
+.vite/
