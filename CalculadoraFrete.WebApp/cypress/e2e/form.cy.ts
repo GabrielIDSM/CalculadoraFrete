@@ -23,7 +23,7 @@ describe('Formulário', () => {
     cy.get('input[name="Comprimento"]').type('30')
     cy.get('input[name="Valor declarado"]').type('000')
     cy.get('form').submit()
-    cy.get('.FreteSucesso', { timeout: 60000 }).should('be.visible')
+    cy.get('.FreteSucesso', { timeout: 10000 }).should('be.visible')
   })
 
   it('Deve exibir mensagem de erro', () => {
@@ -38,6 +38,102 @@ describe('Formulário', () => {
     cy.get('input[name="Comprimento"]').type('30')
     cy.get('input[name="Valor declarado"]').type('000')
     cy.get('form').submit()
-    cy.get('.FreteErro', { timeout: 60000 }).should('be.visible')
+    cy.get('.FreteErro', { timeout: 10000 }).should('be.visible')
+  })
+
+  it('Deve exibir mensagem de validação de campo (CEP inválido)', () => {
+    const cepPrefeitura = cepsPrefeituras[Math.floor(Math.random() * cepsPrefeituras.length)]
+
+    cy.visit('/')
+    cy.get('input[name="CEP de origem"]').type(cepPrefeitura)
+    cy.get('input[name="CEP de destino"]').type('0') // CEP inválido
+    cy.get('input[name="Peso"]').type('10')
+    cy.get('input[name="Largura"]').type('10')
+    cy.get('input[name="Altura"]').type('10')
+    cy.get('input[name="Comprimento"]').type('30')
+    cy.get('input[name="Valor declarado"]').type('000')
+    cy.get('form').submit()
+    cy.get('.Historico').should('not.exist')
+    cy.get('.Campo span').should('be.visible')
+  })
+
+  it('Deve exibir mensagem de validação de campo (Peso inválido)', () => {
+    const cepPrefeitura = cepsPrefeituras[Math.floor(Math.random() * cepsPrefeituras.length)]
+
+    cy.visit('/')
+    cy.get('input[name="CEP de origem"]').type(cepPrefeitura)
+    cy.get('input[name="CEP de destino"]').type('70075900') // Brasília - DF
+    cy.get('input[name="Peso"]').type('0.')
+    cy.get('input[name="Largura"]').type('10')
+    cy.get('input[name="Altura"]').type('10')
+    cy.get('input[name="Comprimento"]').type('30')
+    cy.get('input[name="Valor declarado"]').type('000')
+    cy.get('form').submit()
+    cy.get('.Historico').should('not.exist')
+    cy.get('.Campo span').should('be.visible')
+  })
+
+  it('Deve exibir mensagem de validação de campo (Largura inválida)', () => {
+    const cepPrefeitura = cepsPrefeituras[Math.floor(Math.random() * cepsPrefeituras.length)]
+
+    cy.visit('/')
+    cy.get('input[name="CEP de origem"]').type(cepPrefeitura)
+    cy.get('input[name="CEP de destino"]').type('70075900') // Brasília - DF
+    cy.get('input[name="Peso"]').type('10')
+    cy.get('input[name="Largura"]').type('0')
+    cy.get('input[name="Altura"]').type('10')
+    cy.get('input[name="Comprimento"]').type('30')
+    cy.get('input[name="Valor declarado"]').type('000')
+    cy.get('form').submit()
+    cy.get('.Historico').should('not.exist')
+    cy.get('.Campo span').should('be.visible')
+  })
+
+  it('Deve exibir mensagem de validação de campo (Altura inválida)', () => {
+    const cepPrefeitura = cepsPrefeituras[Math.floor(Math.random() * cepsPrefeituras.length)]
+
+    cy.visit('/')
+    cy.get('input[name="CEP de origem"]').type(cepPrefeitura)
+    cy.get('input[name="CEP de destino"]').type('70075900') // Brasília - DF
+    cy.get('input[name="Peso"]').type('10')
+    cy.get('input[name="Largura"]').type('10')
+    cy.get('input[name="Altura"]').type('0')
+    cy.get('input[name="Comprimento"]').type('30')
+    cy.get('input[name="Valor declarado"]').type('000')
+    cy.get('form').submit()
+    cy.get('.Historico').should('not.exist')
+    cy.get('.Campo span').should('be.visible')
+  })
+
+  it('Deve exibir mensagem de validação de campo (Comprimento inválido)', () => {
+    const cepPrefeitura = cepsPrefeituras[Math.floor(Math.random() * cepsPrefeituras.length)]
+
+    cy.visit('/')
+    cy.get('input[name="CEP de origem"]').type(cepPrefeitura)
+    cy.get('input[name="CEP de destino"]').type('70075900') // Brasília - DF
+    cy.get('input[name="Peso"]').type('10')
+    cy.get('input[name="Largura"]').type('10')
+    cy.get('input[name="Altura"]').type('10')
+    cy.get('input[name="Comprimento"]').type('0')
+    cy.get('input[name="Valor declarado"]').type('000')
+    cy.get('form').submit()
+    cy.get('.Historico').should('not.exist')
+    cy.get('.Campo span').should('be.visible')
+  })
+
+  it('Deve exibir mensagem de validação de campo (Valor declarado inválido)', () => {
+    const cepPrefeitura = cepsPrefeituras[Math.floor(Math.random() * cepsPrefeituras.length)]
+
+    cy.visit('/')
+    cy.get('input[name="CEP de origem"]').type(cepPrefeitura)
+    cy.get('input[name="CEP de destino"]').type('70075900') // Brasília - DF
+    cy.get('input[name="Peso"]').type('10')
+    cy.get('input[name="Largura"]').type('10')
+    cy.get('input[name="Altura"]').type('10')
+    cy.get('input[name="Comprimento"]').type('0')
+    cy.get('input[name="Valor declarado"]').clear()
+    cy.get('form').submit()
+    cy.get('.Historico').should('not.exist')
+    cy.get('.Campo span').should('be.visible')
   })
 })
