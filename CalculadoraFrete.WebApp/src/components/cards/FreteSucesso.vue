@@ -201,6 +201,10 @@
     align-items: center;
   }
 
+  .Pacote {
+    justify-content: center;
+  }
+
   .Pacote .Informacoes {
     flex: unset;
   }
