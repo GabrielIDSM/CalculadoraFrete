@@ -1,8 +1,10 @@
 <template>
   <section class="Historico" v-if="freteStore.historico.length">
-    <div v-for="(resposta, index) in freteStore.historico" :key="index" class="Frete">
-      <FreteSucesso v-if="resposta.sucesso && resposta.cotacoes.length" :resposta="resposta" />
-      <FreteErro v-else :resposta="resposta" />
+    <div class="Conteudo">
+      <div v-for="(resposta, index) in freteStore.historico" :key="index" class="Frete">
+        <FreteSucesso v-if="resposta.sucesso && resposta.cotacoes.length" :resposta="resposta" />
+        <FreteErro v-else :resposta="resposta" />
+      </div>
     </div>
   </section>
 </template>

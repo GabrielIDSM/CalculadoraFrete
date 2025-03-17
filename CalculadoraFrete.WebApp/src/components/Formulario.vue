@@ -1,17 +1,46 @@
 <template>
   <section class="Formulario">
-    <form @submit.prevent="submitForm">
-      <CEP :nome="'CEP de origem'" :campo="form.CEPOrigem" />
-      <CEP :nome="'CEP de destino'" :campo="form.CEPDestino" />
-      <Numero :nome="'Peso'" :campo="form.Peso" :isInteiro="false" />
-      <Numero :nome="'Largura'" :campo="form.Largura" :isInteiro="true" />
-      <Numero :nome="'Altura'" :campo="form.Altura" :isInteiro="true" />
-      <Numero :nome="'Comprimento'" :campo="form.Comprimento" :isInteiro="true" />
-      <RealBrasileiro :nome="'Valor declarado'" :campo="form.ValorDeclarado" />
-      <button type="submit">Calcular Frete</button>
-    </form>
+    <div class="Conteudo">
+      <form @submit.prevent="submitForm">
+        <CEP :nome="'CEP de origem'" :campo="form.CEPOrigem" />
+        <CEP :nome="'CEP de destino'" :campo="form.CEPDestino" />
+        <Numero :nome="'Peso'" :campo="form.Peso" :isInteiro="false" />
+        <Numero :nome="'Largura'" :campo="form.Largura" :isInteiro="true" />
+        <Numero :nome="'Altura'" :campo="form.Altura" :isInteiro="true" />
+        <Numero :nome="'Comprimento'" :campo="form.Comprimento" :isInteiro="true" />
+        <RealBrasileiro :nome="'Valor declarado'" :campo="form.ValorDeclarado" />
+        <button class="btn" type="submit">Calcular Frete</button>
+      </form>
+    </div>
   </section>
 </template>
+
+<style scoped>
+.Formulario {
+  padding: 40px 0;
+  background-color: rgba(var(--off-white), 1);
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 10px;
+}
+
+button {
+  margin-top: 20px;
+  padding: 12px;
+  flex: 1 1 100%;
+  border-radius: 50px;
+  color: rgba(var(--off-white), 1);
+  background-color: rgba(var(--van-dyke), 0.9);
+}
+
+button:hover {
+  color: rgba(var(--off-white), 1);
+  background-color: rgba(var(--van-dyke), 1);
+}
+</style>
 
 <script setup lang="ts">
 import CEP from '@/components/fields/CEP.vue'
@@ -24,11 +53,13 @@ import * as yup from 'yup'
 const schema = yup.object({
   CEPOrigem: yup
     .string()
-    .matches(/^\d{5}-\d{3}$/, 'O CEP de origem deve ter o formato 12345-123')
+    .transform((value) => value.replace(/\D/g, ''))
+    .length(8, 'O CEP de origem deve ter o formato 12345-123')
     .required('CEP de origem é obrigatório'),
   CEPDestino: yup
     .string()
-    .matches(/^\d{5}-\d{3}$/, 'O CEP de origem deve ter o formato 12345-123')
+    .transform((value) => value.replace(/\D/g, ''))
+    .length(8, 'O CEP de origem deve ter o formato 12345-123')
     .required('CEP de destino é obrigatório'),
   Peso: yup
     .number()

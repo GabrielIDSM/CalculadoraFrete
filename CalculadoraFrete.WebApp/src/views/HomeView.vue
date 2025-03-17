@@ -1,9 +1,7 @@
 <template>
-  <main>
-    <BoasVindas />
-    <Formulario @calcular-frete="calcularFrete" />
-    <Historico />
-  </main>
+  <BoasVindas />
+  <Formulario @calcular-frete="calcularFrete" />
+  <Historico />
 </template>
 
 <script setup lang="ts">

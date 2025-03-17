@@ -1,7 +1,13 @@
 <template>
   <div class="Campo" :class="{ Erro: campo.errorMessage }">
     <label>{{ nome }}</label>
-    <input @change="campo.validate()" v-model="campo.value.value" type="number" :step="stepValue" />
+    <input
+      @change="campo.validate"
+      v-model="campo.value.value"
+      autocomplete="off"
+      type="number"
+      :step="stepValue"
+    />
     <span v-if="campo.errorMessage">{{ campo.errorMessage }}</span>
   </div>
 </template>
