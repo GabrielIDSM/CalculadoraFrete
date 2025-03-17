@@ -61,10 +61,6 @@ namespace CalculadoraFrete.Client.Frenet.Services
                                 Preco = Convert.ToDouble(cotacao.GetProperty("ShippingPrice").GetString())
                             });
                         }
-                        else
-                        {
-                            throw new Exception(cotacao.GetProperty("Msg").GetString());
-                        }
                     }
                 }
                 else

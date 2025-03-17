@@ -20,9 +20,9 @@
       </div>
       <div class="Enderecos">
         <div class="Icone">
-          <font-awesome-icon icon="fa-solid fa-location-dot" />
+          <font-awesome-icon icon="fa-solid fa-map-location-dot" />
         </div>
-        <div class="Infomacoes">
+        <div class="Informacoes">
           <div class="Endereco EnderecoOrigem">
             <p>
               {{ props.resposta.origem.bairro }}, {{ props.resposta.origem.localidade }},
@@ -57,6 +57,136 @@
     </table>
   </section>
 </template>
+
+<style scoped>
+.Frete {
+  padding: 8px;
+  border-radius: 8px;
+  border: solid 1px rgba(var(--van-dyke), 0.6);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.Cabecalho {
+  display: flex;
+  gap: 10px;
+}
+
+.Pacote,
+.Enderecos {
+  height: 48px;
+  display: flex;
+}
+
+.Icone {
+  width: 48px;
+  height: 48px;
+  position: relative;
+}
+
+.Icone svg {
+  width: auto;
+  height: 24px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgba(var(--van-dyke), 1);
+}
+
+.Informacoes {
+  display: flex;
+  flex-direction: column;
+}
+
+.Informacoes p {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.Dimensoes {
+  height: 24px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.Peso {
+  height: 24px;
+}
+
+.EnderecoOrigem {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.Cotacoes {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.Cotacoes td {
+  height: 35px;
+}
+
+.Cotacoes td:nth-child(1) {
+  padding-left: 10px;
+}
+
+.Cotacoes td:nth-child(3) {
+  padding-right: 10px;
+}
+
+.Cotacoes tr:nth-child(even) td {
+  background-color: rgba(var(--cinereous), 0.05);
+}
+
+.Cotacoes tr:nth-child(odd) td {
+  background-color: rgba(var(--cinereous), 0.1);
+}
+
+.Cotacoes thead tr {
+  width: 100%;
+  height: 35px;
+}
+
+.Cotacoes thead th {
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 24px;
+  color: rgba(var(--van-dyke), 1);
+  border-top: solid 1px rgba(var(--van-dyke), 0.5);
+  border-bottom: solid 1px rgba(var(--van-dyke), 0.5);
+  background-color: rgba(var(--cinereous), 0.2);
+}
+
+.Cotacoes thead th:nth-child(1) {
+  padding-left: 10px;
+  width: 40%;
+  border-radius: 12px 0 0 12px;
+  border-left: solid 1px rgba(var(--van-dyke), 0.5);
+}
+
+.Cotacoes thead th:nth-child(2) {
+  width: 30%;
+}
+
+.Cotacoes thead th:nth-child(3) {
+  padding-right: 10px;
+  width: 30%;
+  border-radius: 0 12px 12px 0;
+  border-right: solid 1px rgba(var(--van-dyke), 0.5);
+}
+
+.Cotacoes tbody td {
+  color: rgba(var(--van-dyke), 1);
+}
+</style>
 
 <script setup lang="ts">
 import type { PropType } from 'vue'
