@@ -16,10 +16,22 @@ const freteStore = useFreteStore()
 
 const calcularFrete = async (parametros: ParametroEnvio) => {
   try {
-    const response = await axios.post<Resposta>(import.meta.env.VITE_API_URL, parametros)
-    freteStore.adicionarCotacao(response.data)
+    const resposta = await axios.post<Resposta>(import.meta.env.VITE_API_URL, parametros)
+    freteStore.adicionarCotacao(resposta.data)
   } catch (error) {
-    console.error('Erro ao calcular frete: ', error)
+    const resposta: Resposta = {
+      parametroEnvio: parametros,
+      cotacoes: [],
+      sucesso: false,
+      mensagemErro: 'Erro interno',
+    }
+    freteStore.adicionarCotacao(resposta)
+  } finally {
+    const element = document.querySelector('.Historico')
+
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
   }
 }
 </script>

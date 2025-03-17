@@ -63,6 +63,7 @@
   padding: 8px;
   border-radius: 8px;
   border: solid 1px rgba(var(--van-dyke), 0.6);
+  background-color: rgba(var(--off-white), 1);
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -98,6 +99,7 @@
 .Informacoes {
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
 
 .Informacoes p {
@@ -167,13 +169,13 @@
 
 .Cotacoes thead th:nth-child(1) {
   padding-left: 10px;
-  width: 40%;
+  width: 30%;
   border-radius: 12px 0 0 12px;
   border-left: solid 1px rgba(var(--van-dyke), 0.5);
 }
 
 .Cotacoes thead th:nth-child(2) {
-  width: 30%;
+  width: 40%;
 }
 
 .Cotacoes thead th:nth-child(3) {
@@ -185,6 +187,46 @@
 
 .Cotacoes tbody td {
   color: rgba(var(--van-dyke), 1);
+}
+
+@media (max-width: 980px) {
+  .Frete {
+    gap: 20px;
+  }
+
+  .Pacote,
+  .Enderecos {
+    min-height: 48px;
+    height: unset;
+    align-items: center;
+  }
+
+  .Pacote .Informacoes {
+    flex: unset;
+  }
+
+  .Enderecos .Icone {
+    display: none;
+  }
+
+  .Enderecos .Informacoes {
+    gap: 5px;
+    text-align: center;
+  }
+
+  .EnderecoOrigem {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .Cotacoes {
+    text-align: center;
+  }
+
+  .Cabecalho {
+    flex-direction: column;
+    gap: 20px;
+  }
 }
 </style>
 
