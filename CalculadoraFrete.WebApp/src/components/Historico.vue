@@ -17,6 +17,13 @@
   flex-direction: column;
   gap: 30px;
 }
+
+@media (max-width: 980px) {
+  .Conteudo {
+    border-top: unset;
+    background-color: rgba(var(--cinereous), 0.1);
+  }
+}
 </style>
 
 <script setup lang="ts">

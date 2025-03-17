@@ -28,8 +28,8 @@ export interface CotacaoFrete {
 
 export interface Resposta {
   parametroEnvio: ParametroEnvio
-  origem: Endereco
-  destino: Endereco
+  origem?: Endereco
+  destino?: Endereco
   cotacoes: CotacaoFrete[]
   sucesso: boolean
   mensagemErro?: string

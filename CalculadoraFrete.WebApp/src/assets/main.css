@@ -88,3 +88,9 @@ body {
 .Frete.FreteErro {
   --cor-status: var(--wku-red);
 }
+
+@media (max-width: 980px) {
+  .Campo {
+    flex: 1 1 calc(100% - 10px);
+  }
+}
