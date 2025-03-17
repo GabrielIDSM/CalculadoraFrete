@@ -25,15 +25,15 @@
         <div class="Informacoes">
           <div class="Endereco EnderecoOrigem">
             <p>
-              {{ props.resposta.origem.bairro }}, {{ props.resposta.origem.localidade }},
-              {{ props.resposta.origem.estado }} ({{ props.resposta.origem.uf }})
+              {{ props.resposta.origem!.bairro }}, {{ props.resposta.origem!.localidade }},
+              {{ props.resposta.origem!.estado }} ({{ props.resposta.origem!.uf }})
             </p>
             <font-awesome-icon icon="fa-solid fa-arrow-right" />
           </div>
           <div class="Endereco">
             <p>
-              {{ props.resposta.destino.bairro }}, {{ props.resposta.destino.localidade }},
-              {{ props.resposta.destino.estado }} ({{ props.resposta.destino.uf }})
+              {{ props.resposta.destino!.bairro }}, {{ props.resposta.destino!.localidade }},
+              {{ props.resposta.destino!.estado }} ({{ props.resposta.destino!.uf }})
             </p>
           </div>
         </div>

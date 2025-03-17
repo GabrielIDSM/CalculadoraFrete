@@ -5,9 +5,13 @@ import type { Resposta } from '../types/Frete'
 export const useFreteStore = defineStore('frete', () => {
   const historico = ref<Resposta[]>([])
 
-  const adicionarCotacao = (novaCotacao: Resposta) => {
-    historico.value.unshift(novaCotacao)
+  const adicionarCotacaoTemporaria = (cotacaoTemporaria: Resposta) => {
+    historico.value.unshift(cotacaoTemporaria)
   }
 
-  return { historico, adicionarCotacao }
+  const adicionarCotacao = (novaCotacao: Resposta) => {
+    historico.value[0] = novaCotacao
+  }
+
+  return { historico, adicionarCotacao, adicionarCotacaoTemporaria }
 })
