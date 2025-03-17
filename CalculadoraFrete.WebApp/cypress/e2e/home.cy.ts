@@ -1,6 +1,10 @@
 describe('Página Inicial', () => {
-  it('deve exibir o título correto', () => {
+  it('Deve exibir o título', () => {
     cy.visit('/')
     cy.contains('h1', 'Bem-vindo à nossa Calculadora de Frete Grátis!')
+  })
+  it('Deve exibir o formulário', () => {
+    cy.visit('/')
+    cy.get('.Formulario').should('exist')
   })
 })

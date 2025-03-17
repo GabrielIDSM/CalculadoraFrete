@@ -4,6 +4,7 @@
     <input
       @change="campo.validate"
       v-model="campo.value.value"
+      :name="nome"
       autocomplete="off"
       type="number"
       :step="stepValue"
