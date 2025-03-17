@@ -1,7 +1,12 @@
 <template>
   <div class="Campo" :class="{ Erro: campo.errorMessage }">
     <label>{{ nome }}</label>
-    <money3 v-model.number="campo.value.value" autocomplete="off" v-bind="maskRealBrasileiro" />
+    <money3
+      autocomplete="off"
+      v-model.number="campo.value.value"
+      v-bind="maskRealBrasileiro"
+      :name="nome"
+    />
     <span v-if="campo.errorMessage">{{ campo.errorMessage }}</span>
   </div>
 </template>

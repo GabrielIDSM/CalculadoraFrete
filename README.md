@@ -55,3 +55,16 @@ Fique à vontade para ir além do que foi listado como obrigatório e refinar a 
 Se tiver dúvidas, fique à vontade para perguntar!
 
 Boa sorte! 🚀
+
+## Instruções de execução do projeto
+O projeto é dividido em duas partes: uma API ASP.NET, para orquestação das chamadas às APIs utilizadas pelo projeto, e uma aplicação Vue.js 3.
+
+### 1. API
+A API utiliza variáveis de ambiente para guardar o token de acesso a API da Frenet. Portanto, ao executar a aplicação é necessário configurar com seu próprio token de acesso.
+
+Além disso, a API utiliza a porta local 5202.
+
+É possível atualizar o token e a porta local no arquivo [launchSettings.json](https://github.com/GabrielIDSM/CalculadoraFrete/blob/master/CalculadoraFrete.API/Properties/launchSettings.json)
+
+### 2. Web
+A aplicação web utiliza a variável de ambiente VITE_API_URL para acessar a API, caso haja necessidade de alterar, é necessário modificar o arquivo [.env](https://github.com/GabrielIDSM/CalculadoraFrete/blob/master/CalculadoraFrete.WebApp/.env)

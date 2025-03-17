@@ -5,6 +5,7 @@
       @change="campo.validate"
       v-model="campo.value.value"
       v-imask="{ mask: '00000-000' }"
+      :name="nome"
       maxlength="9"
       autocomplete="off"
       type="text"

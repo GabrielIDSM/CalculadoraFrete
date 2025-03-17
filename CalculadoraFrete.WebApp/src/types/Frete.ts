@@ -33,4 +33,5 @@ export interface Resposta {
   cotacoes: CotacaoFrete[]
   sucesso: boolean
   mensagemErro?: string
+  carregando?: boolean
 }

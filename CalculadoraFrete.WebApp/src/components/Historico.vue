@@ -2,7 +2,11 @@
   <section class="Historico" v-if="freteStore.historico.length">
     <div class="Conteudo">
       <div v-for="(resposta, index) in freteStore.historico" :key="index">
-        <FreteSucesso v-if="resposta.sucesso && resposta.cotacoes.length" :resposta="resposta" />
+        <FreteCarregando v-if="resposta.carregando" />
+        <FreteSucesso
+          v-else-if="resposta.sucesso && resposta.cotacoes.length"
+          :resposta="resposta"
+        />
         <FreteErro v-else :resposta="resposta" />
       </div>
     </div>
@@ -27,6 +31,7 @@
 </style>
 
 <script setup lang="ts">
+import FreteCarregando from './cards/FreteCarregando.vue'
 import FreteErro from '@/components/cards/FreteErro.vue'
 import FreteSucesso from '@/components/cards/FreteSucesso.vue'
 import { useFreteStore } from '../stores/useFreteStore'
